@@ -1,0 +1,26 @@
+<h1>Welcome to Messenger</h1>
+
+<div>
+  There are currently <strong>{{users}}</strong> users online. Start chatting!
+</div>
+
+<div>
+  <ul>
+    <li *ngFor="let message of messages">
+      {{message}}
+    </li>
+  </ul>
+</div>
+
+<div>
+  <label >
+<textarea required="required" spellcheck="true" autoComplete="true" rows="1" class="chat-input"
+          placeholder="type message..." [(ngModel)]="message" (keyup.enter)="addChat()" minlength="0">
+  </textarea>
+  </label>
+</div>
+
+<div>
+  <button (click)="addChat()" slot="end" class="send-chat-button" name="Send">Send
+  </button>
+</div>
