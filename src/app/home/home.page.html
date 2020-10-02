@@ -1,26 +1,41 @@
 <h1>Welcome to Messenger</h1>
-
 <div>
-  There are currently <strong>{{users}}</strong> users online. Start chatting!
+  There are currently <strong>{{users}}</strong> user(s) online.
+</div>
+<br>
+<div *ngIf="!isChat">
+  <div>
+    <label>Enter your name to start chatting:</label>
+      <div>
+        <label>
+          <input type="text" [formControl]="name" (keyup.enter)="setName()" placeholder="Your name...">
+        </label>
+      </div>
+    <p>
+      <button (click)="setName()">OK</button>
+    </p>
+  </div>
 </div>
 
-<div>
-  <ul>
-    <li *ngFor="let message of messages">
-      {{message}}
-    </li>
-  </ul>
-</div>
+<div *ngIf="isChat">
+  <div>
+    <ul>
+      <li *ngFor="let message of messages" style="list-style-type:none;">
+        {{message.username}}: {{message.text}}
+      </li>
+    </ul>
+  </div>
 
-<div>
-  <label >
-<textarea required="required" spellcheck="true" autoComplete="true" rows="1" class="chat-input"
-          placeholder="type message..." [(ngModel)]="message" (keyup.enter)="addChat()" minlength="0">
-  </textarea>
-  </label>
-</div>
+  <div>
+    <label>
+    <textarea required="required" spellcheck="true" autoComplete="true" rows="1" class="chat-input"
+            placeholder="type message..." [(ngModel)]="message" (keyup.enter)="addChat()" minlength="1">
+    </textarea>
+    </label>
+  </div>
 
-<div>
-  <button (click)="addChat()" slot="end" class="send-chat-button" name="Send">Send
-  </button>
+  <div>
+    <button (click)="addChat()" slot="end" class="send-chat-button" name="Send">Send
+    </button>
+  </div>
 </div>

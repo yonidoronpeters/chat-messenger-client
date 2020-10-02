@@ -11,6 +11,10 @@ textarea:invalid {
   border: 2px solid red;
 }
 
+ul.no-bullets {
+  list-style-type: none; /* Remove bullets */
+}
+
 .send-chat-button {
   color: #20bf6b !important;
   text-transform: uppercase;
