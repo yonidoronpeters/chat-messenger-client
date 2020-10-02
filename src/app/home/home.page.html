@@ -1,27 +1,26 @@
-<h1>Welcome to Messenger</h1>
+<h1>Guild Messenger 📬</h1>
 <div>
   There are currently <strong>{{users}}</strong> user(s) online.
 </div>
 <br>
 <div *ngIf="!isChat">
   <div>
-    <label>Enter your name to start chatting:</label>
+    <label for="name">Enter your name to start chatting:</label>
+      <p>
       <div>
-        <label>
-          <input type="text" [formControl]="name" (keyup.enter)="setName()" placeholder="Your name...">
-        </label>
+          <input id="name" type="text" [formControl]="name" (keyup.enter)="setName()" placeholder="Your name...">
       </div>
     <p>
-      <button (click)="setName()">OK</button>
+      <button class="button" (click)="setName()">OK</button>
     </p>
   </div>
 </div>
 
-<div *ngIf="isChat">
+<div *ngIf="isChat" class="messages">
   <div>
     <ul>
-      <li *ngFor="let message of messages" style="list-style-type:none;">
-        {{message.username}}: {{message.text}}
+      <li class="message" *ngFor="let message of messages" style="list-style-type:none;" [class.mine]="message">
+        {{message.datetime.toLocaleString()}} : {{message.username}}: {{message.text}}
       </li>
     </ul>
   </div>
@@ -33,9 +32,8 @@
     </textarea>
     </label>
   </div>
-
+  <p>
   <div>
-    <button (click)="addChat()" slot="end" class="send-chat-button" name="Send">Send
-    </button>
+    <button (click)="addChat()" slot="end" class="button" name="Send">Send</button>
   </div>
 </div>

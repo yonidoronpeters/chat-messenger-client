@@ -1,33 +1,34 @@
-textarea {
+textarea, input {
   width: calc(100% - 20px);
   margin-left: 10px;
-  background-color: #fff;
+  background-color: #49494c;
+  color: #bababa;
   font-size: 1.2em;
   resize: none;
-  /*border: none;*/
 }
 
-textarea:invalid {
-  border: 2px solid red;
+input {
+  width: 30%;
 }
 
 ul.no-bullets {
   list-style-type: none; /* Remove bullets */
 }
 
-.send-chat-button {
-  color: #20bf6b !important;
-  text-transform: uppercase;
-  background: #ffffff;
-  padding: 20px;
-  border: 4px solid #20bf6b !important;
-  border-radius: 6px;
+.button {
+  transition-duration: 0.4s;
+  background-color: whitesmoke;
+  border: none;
+  color: black;
+  border-radius: 8px;
+  padding: 8px 24px;
+  text-align: center;
+  text-decoration: none;
   display: inline-block;
-  transition: all 0.3s ease 0s;
+  font-size: 15px;
 }
-.send-chat-button:hover {
-  color: #494949 !important;
-  border-radius: 50px;
-  border-color: #494949 !important;
-  transition: all 0.3s ease 0s;
+
+.button:hover {
+  background-color: #008CBA;
+  color: white;
 }

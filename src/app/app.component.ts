@@ -4,6 +4,7 @@ import {FormControl} from '@angular/forms';
 import {User} from './user';
 import {HttpClient} from '@angular/common/http';
 import {Message} from './message';
+import {Observable} from 'rxjs';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -19,14 +20,19 @@ export class AppComponent implements OnInit {
   name = new FormControl('');
   user;
   isChat = false;
+  serverUrl: string;
 
   constructor(private chatService: ChatService,
               private http: HttpClient,
-              @Inject('serverUrl') serverUrl: string) {
-    fetcher(`${serverUrl}/messages`).then((data) => this.messages = data).catch((error) => console.log(error));
+              @Inject('serverUrl') url: string) {
+    this.serverUrl = url;
   }
 
   ngOnInit(): void {
+    this.http.get(`${this.serverUrl}/messages`)
+      .toPromise()
+      .then((data: Message[]) => this.messages = data)
+      .catch((error) => console.log(error));
     this.chatService.receiveChat().subscribe((message: Message) => {
       this.messages.push(message);
     });
@@ -38,17 +44,16 @@ export class AppComponent implements OnInit {
   addChat(): void {
     const currMessage = this.message.trim();
     if (currMessage) {
-      const msg: Message = { username: this.user.name, text: currMessage };
+      const msg: Message = { username: this.user.name, text: currMessage, datetime: new Date()};
       this.messages.push(msg);
       this.chatService.sendChat(msg);
       this.message = '';
     }
   }
 
-  async setName(): Promise<void> {
+  setName(): void {
     this.user = new User(this.name.value);
     console.log(this.name.value);
-    // serverside validation
     if (this.name.value?.trim() === '') {
       console.error('Invalid username!');
     } else {

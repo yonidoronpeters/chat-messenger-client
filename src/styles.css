@@ -1,22 +1,23 @@
 /* Application-wide Styles */
 h1 {
   color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 200%;
 }
 h2, h3 {
   color: #444;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Courier New", Courier, monospace;
   font-weight: lighter;
 }
 body {
   margin: 2em;
+  background: black;
 }
 body, input[type="text"], button {
-  color: #333;
-  font-family: Cambria, Georgia;
+  color: #cdcdcd;
+  font-family: "Courier New", Courier, monospace;
 }
 /* everywhere else */
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }

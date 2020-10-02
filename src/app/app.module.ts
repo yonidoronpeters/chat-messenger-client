@@ -21,7 +21,6 @@ const config: SocketIoConfig = { url: messageServerUrl };
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // RouterModule.forRoot([]),
   ],
   providers: [{provide: 'serverUrl', useValue: messageServerUrl}],
   bootstrap: [AppComponent]
