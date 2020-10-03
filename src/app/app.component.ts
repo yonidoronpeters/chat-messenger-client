@@ -1,9 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChatService } from './services/chat.service';
 import { FormControl } from '@angular/forms';
 import { User } from './user';
 import { HttpClient } from '@angular/common/http';
 import { Message } from './message';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -17,15 +18,9 @@ export class AppComponent implements OnInit {
   name = new FormControl('');
   user;
   isChat = false;
-  serverUrl: string;
+  serverUrl = environment.messageServerUrl;
 
-  constructor(
-    private chatService: ChatService,
-    private http: HttpClient,
-    @Inject('serverUrl') url: string
-  ) {
-    this.serverUrl = url;
-  }
+  constructor(private chatService: ChatService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.http

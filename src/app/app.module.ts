@@ -5,11 +5,9 @@ import {AppComponent} from './app.component';
 import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { environment } from '../environments/environment';
 
-// TODO extract property
-// const messageServerUrl = 'https://cryptochatter.herokuapp.com';
-const messageServerUrl = 'http://localhost:3005';
-const config: SocketIoConfig = { url: messageServerUrl };
+const config: SocketIoConfig = { url: environment.messageServerUrl};
 
 @NgModule({
   declarations: [
@@ -22,7 +20,7 @@ const config: SocketIoConfig = { url: messageServerUrl };
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [{provide: 'serverUrl', useValue: messageServerUrl}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
