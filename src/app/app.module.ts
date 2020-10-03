@@ -7,8 +7,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 // TODO extract property
-const messageServerUrl = 'https://cryptochatter.herokuapp.com';
-// const messageServerUrl = 'http://localhost:3005';
+// const messageServerUrl = 'https://cryptochatter.herokuapp.com';
+const messageServerUrl = 'http://localhost:3005';
 const config: SocketIoConfig = { url: messageServerUrl };
 
 @NgModule({

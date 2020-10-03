@@ -17,9 +17,9 @@ ul.no-bullets {
 
 .button {
   transition-duration: 0.4s;
-  background-color: whitesmoke;
+  background-color: #008CBA;
   border: none;
-  color: black;
+  color: white;
   border-radius: 8px;
   padding: 8px 24px;
   text-align: center;
@@ -29,6 +29,6 @@ ul.no-bullets {
 }
 
 .button:hover {
-  background-color: #008CBA;
-  color: white;
+  background-color: whitesmoke;
+  color: black;
 }

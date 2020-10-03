@@ -1,17 +1,14 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {ChatService} from './services/chat.service';
-import {FormControl} from '@angular/forms';
-import {User} from './user';
-import {HttpClient} from '@angular/common/http';
-import {Message} from './message';
-import {Observable} from 'rxjs';
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
+import { Component, Inject, OnInit } from '@angular/core';
+import { ChatService } from './services/chat.service';
+import { FormControl } from '@angular/forms';
+import { User } from './user';
+import { HttpClient } from '@angular/common/http';
+import { Message } from './message';
 
 @Component({
   selector: 'app-root',
   templateUrl: './home/home.page.html',
-  styleUrls: ['./home/home.page.css']
+  styleUrls: ['./home/home.page.css'],
 })
 export class AppComponent implements OnInit {
   users = 0;
@@ -22,16 +19,19 @@ export class AppComponent implements OnInit {
   isChat = false;
   serverUrl: string;
 
-  constructor(private chatService: ChatService,
-              private http: HttpClient,
-              @Inject('serverUrl') url: string) {
+  constructor(
+    private chatService: ChatService,
+    private http: HttpClient,
+    @Inject('serverUrl') url: string
+  ) {
     this.serverUrl = url;
   }
 
   ngOnInit(): void {
-    this.http.get(`${this.serverUrl}/messages`)
+    this.http
+      .get(`${this.serverUrl}/messages`)
       .toPromise()
-      .then((data: Message[]) => this.messages = data)
+      .then((data: Message[]) => (this.messages = data))
       .catch((error) => console.log(error));
     this.chatService.receiveChat().subscribe((message: Message) => {
       this.messages.push(message);
@@ -44,7 +44,11 @@ export class AppComponent implements OnInit {
   addChat(): void {
     const currMessage = this.message.trim();
     if (currMessage) {
-      const msg: Message = { username: this.user.name, text: currMessage, datetime: new Date()};
+      const msg: Message = {
+        username: this.user.name,
+        text: currMessage,
+        datetime: new Date(),
+      };
       this.messages.push(msg);
       this.chatService.sendChat(msg);
       this.message = '';
