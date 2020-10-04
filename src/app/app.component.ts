@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   constructor(private chatService: ChatService, private http: HttpClient) {}
 
   ngOnInit(): void {
+    console.log(`connecting to ${this.serverUrl}`);
     this.http
       .get(`${this.serverUrl}/messages`)
       .toPromise()
