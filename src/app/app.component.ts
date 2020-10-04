@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
       const msg: Message = {
         username: this.user.name,
         text: currMessage,
-        datetime: new Date(),
+        datetime: new Date().toISOString(),
       };
       this.messages.push(msg);
       this.chatService.sendChat(msg);
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
 
   setName(): void {
     this.user = new User(this.name.value);
-    console.log(this.name.value);
+    console.log(`name entered: ${this.name.value}`);
     if (this.name.value?.trim() === '') {
       console.error('Invalid username!');
     } else {
